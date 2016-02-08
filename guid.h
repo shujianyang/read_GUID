@@ -1,13 +1,13 @@
 #ifndef GUID_H
 #define GUID_H
 
-typedef unsigned char uint8_t;
+#include <stdint.h>
 
 typedef struct{
-    uint8_t part_1[4];
-    uint8_t part_2[2];
-    uint8_t part_3[2];
-    uint8_t part_4[8];
+    uint32_t data_1;
+    uint16_t data_2;
+    uint16_t data_3;
+    uint64_t data_4;
 }guid;
 
 #endif

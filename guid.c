@@ -57,6 +57,8 @@ char * get_guid_type(guid *g)
         type = "EFI System partition";
     else if(guid_match(g, 0xE3C9E316, 0x0B5C, 0x4DB8, 0x817DF92DF00215AE))
         type = "Microsoft Reserved Partition";
+    else if(guid_match(g, 0xBFBFAFE7, 0xA34F, 0x448A, 0x9A5B6213EB736C22))
+        type = "Lenovo boot partition";
     else if(guid_match(g, 0xDE94BBA4, 0x06D1, 0x4D40, 0xA16ABFD50179D6AC))
         type = "Windows Recovery Environment";
     else if(guid_match(g, 0xEBD0A0A2, 0xB9E5, 0x4433, 0x87C068B6B72699C7))

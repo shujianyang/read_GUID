@@ -13,6 +13,15 @@ typedef struct{
     uint8_t data_4[8];
 }guid;
 
+/*Encode GUID as a string*/
 void guid_encode(char *s, guid *g);
+
+
+/*Check if GUID matches a given value.*/
+int guid_match(guid *, uint32_t, uint16_t, uint16_t, uint64_t);
+
+
+/*Get partition type based on GUID value.*/
+char * check_guid_type(guid *);
 
 #endif

@@ -19,7 +19,9 @@ int main()
                         
             char *s = (char*)malloc(LENGTH_OF_GUID);
             guid_encode(s, c);
-            printf("%s\n", s);
+            printf("%s %s\n", s, get_guid_type(c));
+            
+            free(s);
         }
         
         free(c);

@@ -4,6 +4,29 @@
 #include "guid.h"
 
 
+/*Read GUID from file*/
+int read_guid_from_file(guid *g, FILE * pf)
+{
+    if(fread(&(g->data_1), 4, 1, pf) != 1){
+        free(g);
+        return -1;
+    }
+    else if(fread(&(g->data_2), 2, 1, pf) != 1){
+        free(g);
+        return -1;
+    }
+    else if(fread(&(g->data_3), 2, 1, pf) != 1){
+        free(g);
+        return -1;
+    }
+    else if(fread(g->data_4, 8, 1, pf) != 1){
+        free(g);
+        return -1;
+    }
+    return 0;
+}
+
+
 /*Encode GUID as a string*/
 void guid_encode(char *buffer, guid *g)
 {

@@ -1,6 +1,7 @@
 #ifndef GUID_H
 #define GUID_H
 
+#include <stdio.h>
 #include <stdint.h>
 
 #define BYTES_OF_GUID 128
@@ -12,6 +13,9 @@ typedef struct{
     uint16_t data_3;
     uint8_t data_4[8];
 }guid;
+
+/*Read GUID from file*/
+int read_guid_from_file(guid *g, FILE *pf);
 
 /*Encode GUID as a string*/
 void guid_encode(char *s, guid *g);

@@ -2,29 +2,33 @@
 #include <stdlib.h>
 #include "guid.h"
 
-int main()
+int main(int argc, char *argv[])
 {
     FILE * pfile;
     
-    pfile = fopen("GPT.dd", "r");
+    if(argc == 1)
+        pfile = fopen("GPT.dd", "r");
+    else
+        pfile = fopen(argv[1], "r");
     
     if(pfile != NULL){
-        int n;
-        guid * c = (guid*)malloc(sizeof(guid));
-        for(n=0; n<15; ++n){
-            fread(&(c->data_1), 4, 1, pfile);
-            fread(&(c->data_2), 2, 1, pfile);
-            fread(&(c->data_3), 2, 1, pfile);
-            fread(c->data_4, 8, 1, pfile);
+        while(!feof(pfile)){
+            guid * g = (guid*)malloc(sizeof(guid));
+            int err = read_guid_from_file(g, pfile);
+            
+            if(err){
+                /*printf("Error while reading GUID from file.\n");*/
+                break;
+            }
                         
             char *s = (char*)malloc(LENGTH_OF_GUID);
-            guid_encode(s, c);
-            printf("%s %s\n", s, get_guid_type(c));
+            guid_encode(s, g);
+            printf("%s %s\n", s, get_guid_type(g));
             
             free(s);
+            free(g);
         }
         
-        free(c);
         fclose(pfile);
     }
     

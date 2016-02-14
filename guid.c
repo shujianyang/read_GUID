@@ -7,9 +7,13 @@
 /*Read GUID from file*/
 int read_guid_from_file(guid *g, FILE * pf)
 {
-    if(fread(&(g->data_1), 4, 1, pf) != 1){
+    int read;
+    if((read = fread(&(g->data_1), 1, 4, pf)) != 4){
         free(g);
-        return -1;
+        if(read > 0)
+            return -1;
+        else
+            return 1;
     }
     else if(fread(&(g->data_2), 2, 1, pf) != 1){
         free(g);
@@ -30,7 +34,7 @@ int read_guid_from_file(guid *g, FILE * pf)
 /*Encode GUID as a string*/
 void guid_encode(char *buffer, guid *g)
 {
-    snprintf(buffer, LENGTH_OF_GUID, "%08X-%04X-%04X-", 
+    snprintf(buffer, LENGTH_OF_GUID_STRING + 1, "%08X-%04X-%04X-", 
             g->data_1, g->data_2, g->data_3);
     
     char *append = (char*)malloc(4);

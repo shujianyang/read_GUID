@@ -5,7 +5,7 @@
 #include <stdint.h>
 
 #define BYTES_OF_GUID 128
-#define LENGTH_OF_GUID 37
+#define LENGTH_OF_GUID_STRING 36
 
 typedef struct{
     uint32_t data_1;

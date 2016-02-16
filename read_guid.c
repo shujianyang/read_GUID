@@ -14,27 +14,27 @@ int main(int argc, char *argv[])
         char filename[31];
         scanf("%30s", &filename);
         pfile = fopen(filename, "r");
+        printf("%s:\n", filename);
         if(pfile != NULL){
-            printf("%s:\n", filename);
             process_guid(pfile);
             fclose(pfile);
         }
         else
-            printf("%s: File opening has failed.\n", filename);
+            perror("File opening failed");
         printf("==============================================\n");
     }
     else if(argc > 1){
         int i;
         for(i = 1; i < argc; ++i){
             pfile = fopen(argv[i], "r");
+            printf("%s:\n", argv[i]);
     
             if(pfile != NULL){
-                printf("%s:\n", argv[i]);
                 process_guid(pfile);
                 fclose(pfile);
             }
             else
-                printf("%s: File opening has failed.\n", argv[i]);
+                perror("File opening failed");
             printf("==============================================\n");
         }
     }
@@ -51,7 +51,7 @@ void process_guid(FILE *pfile)
         int err = read_guid_from_file(g, pfile);
         
         if(err == -1){
-            printf("Extra bytes less than GUID length left.\n");
+            printf("Extra bytes less than GUID length left in file.\n");
             break;
         }
         else if(err){

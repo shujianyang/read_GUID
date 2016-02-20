@@ -32,8 +32,15 @@ int read_guid_from_file(guid *g, FILE * pf)
 
 
 /*Encode GUID as a string*/
-void guid_encode(char *buffer, guid *g)
+/*Return value:
+  1: GUID contains none 0 value
+  0: GUID bytes are all 0s
+  */
+int guid_encode(char *buffer, guid *g)
 {
+    if(guid_match(g, 0, 0, 0, 0))
+        return 0;
+        
     snprintf(buffer, LENGTH_OF_GUID_STRING + 1, "%08X-%04X-%04X-", 
             g->data_1, g->data_2, g->data_3);
     
@@ -51,6 +58,8 @@ void guid_encode(char *buffer, guid *g)
     }
     
     free(append);
+    
+    return 1;
 }
 
 

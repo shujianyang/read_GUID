@@ -18,7 +18,7 @@ typedef struct{
 int read_guid_from_file(guid *g, FILE *pf);
 
 /*Encode GUID as a string*/
-void guid_encode(char *s, guid *g);
+int guid_encode(char *s, guid *g);
 
 
 /*Check if GUID matches a given value.*/

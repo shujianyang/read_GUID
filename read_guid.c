@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 void process_guid(FILE *pfile)
 {
     int count = 0;
-    int previous_is_empty = 0;
+    int empty_entries = 0;
     int not_empty = 0;
     while(!feof(pfile)){
         guid * g = (guid*)malloc(sizeof(guid));
@@ -62,18 +62,23 @@ void process_guid(FILE *pfile)
                     
         char *s = (char*)malloc(LENGTH_OF_GUID_STRING + 1);
         if(guid_encode(s, g)){
+            if(empty_entries){
+                printf("------------------%d Unused Entries------------------\n", empty_entries);
+            }
             printf("%03d. %s %s\n", count, s, get_guid_type(g));
             ++not_empty;
-            previous_is_empty = 0;
+            empty_entries = 0;
         }
-        else if(!previous_is_empty){
-            printf("------------------Unused------------------\n");
-            previous_is_empty = 1;
-        }
+        else
+            empty_entries++;
+
         ++count;
         
         free(s);
         free(g);
+    }
+    if(empty_entries){
+        printf("------------------%d Unused Entries------------------\n", empty_entries);
     }
     printf("Total:%d  Not empty:%d\n", count, not_empty);
 }

@@ -1,3 +1,7 @@
+/** \file
+  * Header file of GUID.
+  */
+
 #ifndef GUID_H
 #define GUID_H
 
@@ -12,20 +16,20 @@ typedef struct{
     uint16_t data_2;
     uint16_t data_3;
     uint8_t data_4[8];
-}guid;
+} GUID;
 
 /*Read GUID from file*/
-int read_guid_from_file(guid *g, FILE *pf);
+int read_guid_from_file(GUID *g, FILE *pf);
 
 /*Encode GUID as a string*/
-int guid_encode(char *s, guid *g);
+int guid_encode(char *s, GUID *g);
 
 
 /*Check if GUID matches a given value.*/
-int guid_match(guid *, uint32_t, uint16_t, uint16_t, uint64_t);
+int guid_match(GUID *, uint32_t, uint16_t, uint16_t, uint64_t);
 
 
 /*Get partition type based on GUID value.*/
-char * check_guid_type(guid *);
+char * get_guid_type(GUID *);
 
 #endif

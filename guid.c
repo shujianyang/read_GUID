@@ -1,11 +1,21 @@
+/** \file
+  * GUID processing.
+  */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "guid.h"
 
 
-/*Read GUID from file*/
-int read_guid_from_file(guid *g, FILE * pf)
+/**
+  * Read GUID from file
+  * \param g Pointer to GUID struct.
+  * \param pf Input file where GUIDs are read.
+
+  * \return If 16 bytes of data are read, return 0.
+  */
+int read_guid_from_file(GUID *g, FILE * pf)
 {
     int read;
     if((read = fread(&(g->data_1), 1, 4, pf)) != 4){
@@ -36,7 +46,7 @@ int read_guid_from_file(guid *g, FILE * pf)
   1: GUID contains none 0 value
   0: GUID bytes are all 0s
   */
-int guid_encode(char *buffer, guid *g)
+int guid_encode(char *buffer, GUID *g)
 {
     if(guid_match(g, 0, 0, 0, 0))
         return 0;
@@ -64,7 +74,7 @@ int guid_encode(char *buffer, guid *g)
 
 
 /*Check if GUID matches a given value.*/
-int guid_match(guid *g, uint32_t d1, uint16_t d2, uint16_t d3, uint64_t d4)
+int guid_match(GUID *g, uint32_t d1, uint16_t d2, uint16_t d3, uint64_t d4)
 {
     if(g->data_1 != d1 || g->data_2 != d2 || g->data_3 != d3)
         return 0;
@@ -84,7 +94,7 @@ int guid_match(guid *g, uint32_t d1, uint16_t d2, uint16_t d3, uint64_t d4)
 
 
 /*Get partition type based on GUID value.*/
-char * get_guid_type(guid *g)
+char * get_guid_type(GUID *g)
 {
     char *type;
     if(guid_match(g, 0, 0, 0, 0))

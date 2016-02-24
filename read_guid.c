@@ -1,3 +1,7 @@
+/** \file read_guid.c
+  * Main function.
+  */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "guid.h"
@@ -12,7 +16,7 @@ int main(int argc, char *argv[])
     if(argc == 1){
         printf("Please enter file name: ");
         char filename[31];
-        scanf("%30s", &filename);
+        scanf("%30s", (char*)(&filename));
         pfile = fopen(filename, "r");
         printf("%s:\n", filename);
         if(pfile != NULL){
@@ -49,7 +53,7 @@ void process_guid(FILE *pfile)
     int empty_entries = 0;
     int not_empty = 0;
     while(!feof(pfile)){
-        guid * g = (guid*)malloc(sizeof(guid));
+        GUID * g = (GUID*)malloc(sizeof(GUID));
         int err = read_guid_from_file(g, pfile);
         
         if(err == -1){

@@ -1,0 +1,57 @@
+\hypertarget{guid_8h}{\section{guid.\-h File Reference}
+\label{guid_8h}\index{guid.\-h@{guid.\-h}}
+}
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structGUID}{G\-U\-I\-D}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{guid_8h_a870c38154b26adcd4585a975fc9f69e6}{\#define {\bfseries B\-Y\-T\-E\-S\-\_\-\-O\-F\-\_\-\-G\-U\-I\-D}~128}\label{guid_8h_a870c38154b26adcd4585a975fc9f69e6}
+
+\item 
+\hypertarget{guid_8h_adb7a65abd24b323f8cd5c5fedd6afda0}{\#define {\bfseries L\-E\-N\-G\-T\-H\-\_\-\-O\-F\-\_\-\-G\-U\-I\-D\-\_\-\-S\-T\-R\-I\-N\-G}~36}\label{guid_8h_adb7a65abd24b323f8cd5c5fedd6afda0}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{guid_8h_a803b11eb3ed26be71e555b6bbcb88b4d}{read\-\_\-guid\-\_\-from\-\_\-file} (\hyperlink{structGUID}{G\-U\-I\-D} $\ast$g, F\-I\-L\-E $\ast$pf)
+\item 
+\hypertarget{guid_8h_a019c80dd8e40c9903d4c9790aad69bbd}{int {\bfseries guid\-\_\-encode} (char $\ast$s, \hyperlink{structGUID}{G\-U\-I\-D} $\ast$g)}\label{guid_8h_a019c80dd8e40c9903d4c9790aad69bbd}
+
+\item 
+\hypertarget{guid_8h_ae13fa4f3c6ca90ea87d796ba744a33f4}{int {\bfseries guid\-\_\-match} (\hyperlink{structGUID}{G\-U\-I\-D} $\ast$, uint32\-\_\-t, uint16\-\_\-t, uint16\-\_\-t, uint64\-\_\-t)}\label{guid_8h_ae13fa4f3c6ca90ea87d796ba744a33f4}
+
+\item 
+\hypertarget{guid_8h_aa88951e645b0cdd5e3da547475342c1c}{char $\ast$ {\bfseries check\-\_\-guid\-\_\-type} (\hyperlink{structGUID}{G\-U\-I\-D} $\ast$)}\label{guid_8h_aa88951e645b0cdd5e3da547475342c1c}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Header file of \hyperlink{structGUID}{G\-U\-I\-D}. 
+
+\subsection{Function Documentation}
+\hypertarget{guid_8h_a803b11eb3ed26be71e555b6bbcb88b4d}{\index{guid.\-h@{guid.\-h}!read\-\_\-guid\-\_\-from\-\_\-file@{read\-\_\-guid\-\_\-from\-\_\-file}}
+\index{read\-\_\-guid\-\_\-from\-\_\-file@{read\-\_\-guid\-\_\-from\-\_\-file}!guid.h@{guid.\-h}}
+\subsubsection[{read\-\_\-guid\-\_\-from\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}int read\-\_\-guid\-\_\-from\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{{\bf G\-U\-I\-D} $\ast$}]{g, }
+\item[{F\-I\-L\-E $\ast$}]{pf}
+\end{DoxyParamCaption}
+)}}\label{guid_8h_a803b11eb3ed26be71e555b6bbcb88b4d}
+Read \hyperlink{structGUID}{G\-U\-I\-D} from file 
+\begin{DoxyParams}{Parameters}
+{\em g} & Pointer to \hyperlink{structGUID}{G\-U\-I\-D} struct. \\
+\hline
+{\em pf} & Input file where G\-U\-I\-Ds are read.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If 16 bytes of data are read, return 0. 
+\end{DoxyReturn}

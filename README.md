@@ -2,7 +2,7 @@
 C program which processes GUID from binary file.
 
 ###Usage:
-`command [files...]`
+`read_guid [files...]`
 
 The command accept 0 or more additional arguments.
 

@@ -33,3 +33,6 @@ read_guid
 
 # Debug files
 *.dSYM/
+
+# Auto generated documents
+docs/*

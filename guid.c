@@ -1,4 +1,4 @@
-/** \file
+/** \file guid.c
   * GUID processing.
   */
 
@@ -9,7 +9,7 @@
 
 
 /**
-  * Read GUID from file
+  * Read GUID from a binary file
   * \param g Pointer to GUID struct.
   * \param pf Input file where GUIDs are read.
 
@@ -41,10 +41,13 @@ int read_guid_from_file(GUID *g, FILE * pf)
 }
 
 
-/*Encode GUID as a string*/
-/*Return value:
-  1: GUID contains none 0 value
-  0: GUID bytes are all 0s
+/**
+  * Encode GUID as a string
+  *
+  * \param buffer Allocated char string.
+  * \param g Pointer to GUID struct.
+
+  * \return If GUID contains none 0 values, return 1, else return 0.
   */
 int guid_encode(char *buffer, GUID *g)
 {
@@ -73,7 +76,17 @@ int guid_encode(char *buffer, GUID *g)
 }
 
 
-/*Check if GUID matches a given value.*/
+/**
+  *  Check if GUID matches a given value.
+  *
+  * \param g Pointer to GUID struct.
+  * \param d1 Part 1 of GUID
+  * \param d2 Part 2 of GUID
+  * \param d3 Part 3 of GUID
+  * \param d4 Part 4 of GUID
+  *
+  * \return If GUID matches given pattern, return 1, else return 0.
+  */
 int guid_match(GUID *g, uint32_t d1, uint16_t d2, uint16_t d3, uint64_t d4)
 {
     if(g->data_1 != d1 || g->data_2 != d2 || g->data_3 != d3)
@@ -93,7 +106,13 @@ int guid_match(GUID *g, uint32_t d1, uint16_t d2, uint16_t d3, uint64_t d4)
 }
 
 
-/*Get partition type based on GUID value.*/
+/**
+  * Get partition type based on GUID value.
+  *
+  * \param g Pointer to GUID struct.
+  * \return Partition type the GUID represents.
+  *
+  */
 char * get_guid_type(GUID *g)
 {
     char *type;

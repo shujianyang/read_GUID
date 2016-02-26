@@ -2,7 +2,7 @@ P = read_guid
 CFLAGS = -g -Wall
 
 read_guid : read_guid.o guid.o
-	gcc -o $(P) read_guid.o guid.o $(CFLAGS)
+	gcc -o $(P) read_guid.o guid.o $(CFLAGS) -ltsk
 
 read_guid.o : read_guid.c guid.h
 	gcc -c read_guid.c $(CFLAGS)

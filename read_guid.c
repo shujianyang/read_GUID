@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <tsk/libtsk.h>
 #include "guid.h"
 
 void process_guid(FILE *pf);
@@ -42,6 +43,16 @@ int main(int argc, char *argv[])
             printf("==============================================\n");
         }
     }
+
+    TSK_IMG_INFO *img;
+
+    img = tsk_img_open(1, "/dev/sda", TSK_IMG_TYPE_DETECT, 0);
+
+    if(img != NULL) printf("NNNNN\n");
+
+    TSK_VS_INFO *vs = tsk_vs_open(img, 0, TSK_VS_TYPE_DETECT);
+
+    printf("%d %s\n", vs->vstype, tsk_vs_type_toname(vs->vstype));
     
     return 0;
 }

@@ -47,6 +47,13 @@ int main(int argc, char *argv[])
 }
 
 
+/**
+  * Read GUIDs from a file and print partition types.
+  *
+  * \param pfile Pointer to input file.
+  *
+  * \return None.
+  */
 void process_guid(FILE *pfile)
 {
     int count = 0;

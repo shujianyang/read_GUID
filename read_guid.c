@@ -45,14 +45,15 @@ int main(int argc, char *argv[])
     }
 
     TSK_IMG_INFO *img;
+    
+    char *name = "/dev/sda";
+    printf("%s\n", name);
 
-    img = tsk_img_open(1, "/dev/sda", TSK_IMG_TYPE_DETECT, 0);
-
-    if(img != NULL) printf("NNNNN\n");
-
+    img = tsk_img_open(1, &name, TSK_IMG_TYPE_DETECT, 0);
+    
     TSK_VS_INFO *vs = tsk_vs_open(img, 0, TSK_VS_TYPE_DETECT);
 
-    printf("%d %s\n", vs->vstype, tsk_vs_type_toname(vs->vstype));
+    printf("Partition type is: %s\n", tsk_vs_type_toname(vs->vstype));
     
     return 0;
 }
